@@ -17,21 +17,6 @@ import org.springframework.social.connect.web.ConnectController;
 @ComponentScan
 public class Application {
 
-    @Bean
-    public ConnectController connectController(ConnectionFactoryLocator connectionFactoryLocator, ConnectionRepository connectionRepository) {
-        return new ConnectController(connectionFactoryLocator, connectionRepository);
-    }
-
-    @Bean
-    public UserIdSource userIdSource() {
-        return new UserIdSource() {
-            @Override
-            public String getUserId() {
-                return "testuser";
-            }
-        };
-    }
-
     /*
      * SPRING BOOTSTRAP MAIN
      */
