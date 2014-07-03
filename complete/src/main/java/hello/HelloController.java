@@ -3,8 +3,8 @@ package hello;
 import javax.inject.Inject;
 
 import org.springframework.social.facebook.api.Facebook;
-import org.springframework.social.facebook.api.FacebookProfile;
 import org.springframework.social.facebook.api.PagedList;
+import org.springframework.social.facebook.api.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +28,8 @@ public class HelloController {
         }
 
         model.addAttribute(facebook.userOperations().getUserProfile());
-        PagedList<FacebookProfile> friends = facebook.friendOperations().getFriendProfiles();
-        model.addAttribute("friends", friends);
+        PagedList<Post> homeFeed = facebook.feedOperations().getHomeFeed();
+        model.addAttribute("feed", homeFeed);
 
         return "hello";
     }
