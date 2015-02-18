@@ -3,7 +3,7 @@ tags: []
 projects: [spring-social-facebook]
 ---
 :spring_version: current
-:spring_boot_version: 1.1.10.RELEASE
+:spring_boot_version: 1.2.1.RELEASE
 :EnableJdbcConnectionRepository: http://docs.spring.io/spring-social/docs/1.1.x/api/org/springframework/social/config/annotation/EnableJdbcConnectionRepository.html
 :Component: http://docs.spring.io/spring/docs/{spring_version}/javadoc-api/org/springframework/stereotype/Component.html
 :SecurityContext: http://docs.spring.io/spring-security/site/docs/3.2.x/apidocs/org/springframework/security/core/context/SecurityContext.html
