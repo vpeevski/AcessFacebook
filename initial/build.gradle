@@ -30,6 +30,3 @@ dependencies {
     compile("org.springframework.social:spring-social-facebook")
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
-}
