@@ -1,9 +1,14 @@
 package hello;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.PagedList;
+import org.springframework.social.facebook.api.PagingParameters;
 import org.springframework.social.facebook.api.Post;
+import org.springframework.social.facebook.api.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,9 +32,22 @@ public class HelloController {
             return "redirect:/connect/facebook";
         }
 
-        model.addAttribute("facebookProfile", facebook.userOperations().getUserProfile());
-        PagedList<Post> feed = facebook.feedOperations().getFeed();
-        model.addAttribute("feed", feed);
+       
+        String [] fields = { "id","name","birthday","email","location","hometown","gender","first_name","last_name"};
+        User user = facebook.fetchObject("me", User.class, fields);
+        model.addAttribute("name", user.getName());
+        //String name=user.getName();
+//        PagedList<Post> feed = facebook.feedOperations().getFeed();
+//        model.addAttribute("feed", feed);
+        List<Post> allPosts = new ArrayList<>();
+        PagedList<Post> feed = facebook.feedOperations().getFeed(new PagingParameters(50, 0, null, null));
+        while (feed.size() > 0) {
+        	 allPosts.addAll(feed);
+             PagingParameters page =  feed.getNextPage();// 
+             feed = facebook.feedOperations().getFeed(page);
+             
+         }
+        model.addAttribute("feed", allPosts);
         return "hello";
     }
 
